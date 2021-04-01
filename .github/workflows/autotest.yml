@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
     - '*-prebuilt'
+    - 'release/'
 
 jobs:
   acceptance-test:
