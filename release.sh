@@ -49,6 +49,11 @@ BUILD_ARTIFACTS_FOLDER=build-artifacts-$(date +%s)
 mkdir -p ${BUILD_ARTIFACTS_FOLDER}
 GOOS=${INPUT_GOOS} GOARCH=${INPUT_GOARCH} ${INPUT_BUILD_COMMAND} -o ${BUILD_ARTIFACTS_FOLDER}/${BINARY_NAME}${EXT} ${INPUT_BUILD_FLAGS} ${LDFLAGS_PREFIX} "${INPUT_LDFLAGS}" 
 
+# execute post-command if exist
+if [ ! -z "${INPUT_POST_COMMAND}" ]; then
+    eval ${INPUT_POST_COMMAND}
+fi
+
 # executable compression
 if [ ! -z "${INPUT_EXECUTABLE_COMPRESSION}" ]; then
 if [[ "${INPUT_EXECUTABLE_COMPRESSION}" =~ ^upx.* ]]; then

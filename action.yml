@@ -43,6 +43,10 @@ inputs:
     description: 'The actual command to build binary, typically `go build`.'
     required: false
     default: 'go build'
+  post_command:
+    description: 'Extra command that will be executed after `go build`, may for code signing'
+    required: false
+    default: ''
   executable_compression:
     description: 'Compression executable binary by some third-party tools. Only `upx` is supported at the moment.'
     required: false
@@ -86,6 +90,7 @@ runs:
     - ${{ inputs.binary_name }}
     - ${{ inputs.pre_command }}
     - ${{ inputs.build_command }}
+    - ${{ inputs.post_command }}
     - ${{ inputs.executable_compression }}
     - ${{ inputs.extra_files }}
     - ${{ inputs.md5sum }}
